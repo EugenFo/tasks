@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apache-vhosts
+  namespace: apache
+  labels:
+data:
+  vhosts.conf: |-
+    <VirtualHost *:8080>
+        DocumentRoot "/opt/bitnami/apache/htdocs"
+        ServerName example-site1.task
+        CustomLog "/opt/bitnami/apache/logs/example-site1.task.log" combined
+    </VirtualHost>
+
+    <VirtualHost *:8080>
+        DocumentRoot "/opt/bitnami/apache/htdocs"
+        ServerName example-site2.task
+        CustomLog "/opt/bitnami/apache/logs/example-site2.task.log" combined
+    </VirtualHost>

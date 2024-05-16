@@ -1,0 +1,23 @@
+namespaceOverride: monitoring
+
+defaultRules:
+  enabled: false
+
+alertmanager:
+  enabled: false
+
+nodeExporter:
+  enabled: false
+
+grafana:
+  enabled: true
+  ingress:
+    enabled: true
+    hosts:
+      - grafana.task
+
+prometheus:
+  prometheusSpec:
+    resources:
+      limits:
+        memory: 1024Mi

@@ -1,0 +1,25 @@
+namespace: apache
+
+vhostsConfigMap: apache-vhosts
+
+ingress:
+  enabled: true
+  hostname: example-site1.task
+  extraHosts:
+    - name: example-site2.task
+
+service:
+  type: ClusterIP
+
+metrics:
+  enabled: true
+  containerPort: 9117
+  serviceMonitor:
+    enabled: true
+    labels:
+      release: prometheus
+
+# Disabled because there is an typo in the networkpolicy template for the metrics.containerPorts. Issue only occurs when metrics are enabled
+# Error: template: apache/templates/networkpolicy.yaml:44:26: executing "apache/templates/networkpolicy.yaml" at <.Values.metrics.containerPorts.metrics>: nil pointer evaluating interface {}.metrics
+networkPolicy:
+  enabled: false
